@@ -1,6 +1,8 @@
 package com.example.workout;
 
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,6 +32,9 @@ public class WorkoutDetailFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+        if (savedInstanceState != null) {
+            workoutId = savedInstanceState.getLong("workoutId");
+        }
     }
 
     @Override
@@ -37,6 +42,12 @@ public class WorkoutDetailFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_workout_detail, container, false);
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putLong("workoutId", workoutId);
     }
 
     @Override
